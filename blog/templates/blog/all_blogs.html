@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% extends 'portfolio/base.html' %} 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Blogs</title>
+</head>
+<body>
+{% block content %}
+    <h1>We'r written {{blogs.count}} blog{{blogs|pluralize}} </h1>
+    {% for blog in blogs %}
+    <a href="{% url 'blog:detail' blog.id %}"><h2> {{ blog.title }} </h2></a>
+    <h5> {{ blog.date|date:'M d Y'|upper }} </h5>
+    <p> {{ blog.description|striptags|truncatechars:50 }} </p>
+    {% endfor %}
+{% endblock content %}
+</body>
+</html>
